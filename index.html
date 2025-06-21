@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueprint 1 Năm Chinh Phục DevOps Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+
+        /* Card Styling */
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Interactive Elements */
+        .goal-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .goal-list li:hover {
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .goal-list input[type="checkbox"] {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            margin-top: 3px;
+            accent-color: #059669; /* emerald-600 */
+        }
+        .goal-list label {
+             transition: color 0.3s ease;
+             font-weight: 500;
+        }
+        .goal-list input[type="checkbox"]:checked + label {
+            text-decoration: line-through;
+            color: #64748b; /* slate-500 */
+        }
+        .goal-list small {
+            display: block;
+            color: #475569; /* slate-600 */
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+
+        /* Outcome Box */
+        .outcome {
+            background-color: #f0fdf4; /* green-50 */
+            border-left: 4px solid #22c55e; /* green-500 */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Commitment & Target Cards */
+        .commitment-card {
+            background: linear-gradient(135deg, #1e293b, #0f172a); /* slate-800 to slate-900 */
+            color: white;
+        }
+        .target-card {
+             background: #f0f9ff; /* sky-50 */
+             border: 2px dashed #0ea5e9; /* sky-500 */
+        }
+
+        /* Tab & Accordion Styling */
+        .tab-button {
+            transition: all 0.3s;
+            border-bottom: 4px solid transparent;
+        }
+        .tab-button.active {
+            border-bottom-color: #0ea5e9; /* sky-500 */
+            color: #0c4a6e; /* sky-900 */
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .accordion-button.open .accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Progress Bar */
+        #progress-container {
+            width: 100%;
+            background-color: #e2e8f0; /* slate-200 */
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        #progress-bar {
+            height: 1.5rem;
+            width: 0%;
+            background: linear-gradient(90deg, #34d399, #10b981); /* emerald-400 to emerald-500 */
+            transition: width 0.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        <!-- Main Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-black text-slate-900">Blueprint 1 Năm Chinh Phục DevOps Pro</h1>
+            <p class="text-lg text-slate-600 mt-2">Lộ trình cân bằng, thực tế và tập trung</p>
+        </header>
+
+        <!-- Progress Bar -->
+        <div class="card p-6 mb-8">
+            <h2 class="text-xl font-bold mb-3 text-slate-800">Tổng Quan Tiến Độ</h2>
+            <div id="progress-container">
+                <div id="progress-bar">0%</div>
+            </div>
+            <p class="text-sm text-slate-500 mt-2 text-center">Mỗi dấu tích bạn đánh là một bước tiến gần hơn đến mục tiêu!</p>
+        </div>
+        
+        <!-- Tabs Navigation -->
+        <div class="mb-8">
+            <div class="flex border-b border-slate-200 flex-wrap">
+                <button onclick="openTab(event, 'tab-roadmap')" class="tab-button active text-lg font-bold py-4 px-6">Lộ Trình 1 Năm</button>
+                <button onclick="openTab(event, 'tab-principles')" class="tab-button text-lg font-bold py-4 px-6">Cam Kết & Đích Đến</button>
+                <button onclick="openTab(event, 'tab-schedule')" class="tab-button text-lg font-bold py-4 px-6">Thời Khóa Biểu</button>
+            </div>
+        </div>
+
+        <!-- Tab Content -->
+        <div id="tab-content">
+            <!-- Tab 1: Detailed Roadmap -->
+            <div id="tab-roadmap" class="tab-panel">
+                <!-- Accordion for each phase -->
+                <div class="space-y-4">
+                    <!-- Phase 1 -->
+                    <div class="card">
+                        <button class="accordion-button w-full p-6 text-left flex justify-between items-center">
+                            <h2 class="text-2xl font-bold text-blue-700">Giai Đoạn 1: Xây Nền Tảng (Tháng 1-3)</h2>
+                            <i class="fas fa-chevron-down accordion-arrow transition-transform"></i>
+                        </button>
+                        <div class="accordion-content px-6">
+                            <div class="py-6 border-t border-slate-200 grid lg:grid-cols-2 gap-8">
+                                <!-- DevOps & Programming -->
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fab fa-aws icon text-purple-500"></i>DevOps & Lập trình</h3>
+                                    <ul class="goal-list">
+                                        <li><input type="checkbox" id="g1-dv1"><label for="g1-dv1">Nắm vững Linux, Docker, Git.<br><small>Thực hành các lệnh, quyền, SSH, viết Dockerfile tối ưu, sử dụng Git Flow.</small></label></li>
+                                        <li><input type="checkbox" id="g1-dv2"><label for="g1-dv2">Học kiến thức nền tảng SAA.<br><small>Học sâu về IAM, VPC, EC2, S3, RDS, Route 53. Đây là phần bắt buộc cho DOP.</small></label></li>
+                                        <li><input type="checkbox" id="g1-p1"><label for="g1-p1">Hoàn thành khóa Node.js cơ bản.<br><small>Xây dựng một REST API server đơn giản với Express.js.</small></label></li>
+                                    </ul>
+                                </div>
+                                <!-- English & Dropshipping -->
+                                <div>
+                                     <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fas fa-language icon text-green-500"></i>Tiếng Anh</h3>
+                                    <ul class="goal-list">
+                                        <li><input type="checkbox" id="g1-t1"><label for="g1-t1">Xây dựng bộ 500 từ vựng kỹ thuật.<br><small>Dùng Anki để học từ vựng về Cloud, DevOps, Networking.</small></label></li>
+                                    </ul>
+                                    <h3 class="text-xl font-bold mb-4 mt-6 flex items-center"><i class="fas fa-store icon text-orange-500"></i>Dropshipping</h3>
+                                    <ul class="goal-list">
+                                       <li><input type="checkbox" id="g1-d1"><label for="g1-d1">Nghiên cứu & chọn ngách.<br><small>Hoàn thành phân tích 1 ngách tiềm năng và các đối thủ chính.</small></label></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Phase 2 -->
+                    <div class="card">
+                        <button class="accordion-button w-full p-6 text-left flex justify-between items-center">
+                            <h2 class="text-2xl font-bold text-green-700">Giai Đoạn 2: CI/CD & IaC (Tháng 4-6)</h2>
+                             <i class="fas fa-chevron-down accordion-arrow transition-transform"></i>
+                        </button>
+                        <div class="accordion-content px-6">
+                           <div class="py-6 border-t border-slate-200 grid lg:grid-cols-2 gap-8">
+                                <!-- DevOps & Programming -->
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fab fa-aws icon text-purple-500"></i>DevOps & Lập trình</h3>
+                                    <ul class="goal-list">
+                                        <li><input type="checkbox" id="g2-dv1"><label for="g2-dv1">Học kiến thức nền tảng DVA.<br><small>Học sâu về Lambda, API Gateway, DynamoDB, Elastic Beanstalk.</small></label></li>
+                                        <li><input type="checkbox" id="g2-dv2"><label for="g2-dv2">Học và thực hành Terraform.<br><small>Viết IaC để tự động tạo VPC, Subnet, EC2 instance.</small></label></li>
+                                        <li><input type="checkbox" id="g2-dv3"><label for="g2-dv3">Xây dựng pipeline CI/CD hoàn chỉnh.<br><small>Deploy ứng dụng Node.js của bạn lên EC2 bằng GitHub Actions và Terraform.</small></label></li>
+                                        <li><input type="checkbox" id="g2-p1"><label for="g2-p1">Nâng cấp API.<br><small>Kết nối API với DB (RDS/DynamoDB), tích hợp Authentication (JWT).</small></label></li>
+                                    </ul>
+                                </div>
+                                <!-- English & Dropshipping -->
+                                <div>
+                                     <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fas fa-language icon text-green-500"></i>Tiếng Anh</h3>
+                                    <ul class="goal-list">
+                                        <li><input type="checkbox" id="g2-t1"><label for="g2-t1">Đọc AWS Docs và Blog kỹ thuật.<br><small>Đọc tài liệu về các dịch vụ đang học và các bài blog triển khai thực tế.</small></label></li>
+                                    </ul>
+                                    <h3 class="text-xl font-bold mb-4 mt-6 flex items-center"><i class="fas fa-store icon text-orange-500"></i>Dropshipping</h3>
+                                    <ul class="goal-list">
+                                       <li><input type="checkbox" id="g2-d1"><label for="g2-d1">Xây dựng store và chạy test ads.<br><small>Tập trung vào 1-2 sản phẩm, chạy ads ngân sách nhỏ để lấy data.</small></label></li>
+                                       <div class="outcome"><p><strong><i class="fas fa-bullseye mr-2"></i>Mục tiêu:</strong> Có đơn hàng đầu tiên.</p></div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Phase 3 -->
+                    <div class="card">
+                        <button class="accordion-button w-full p-6 text-left flex justify-between items-center">
+                            <h2 class="text-2xl font-bold text-yellow-600">Giai Đoạn 3: Advanced DevOps (Tháng 7-9)</h2>
+                            <i class="fas fa-chevron-down accordion-arrow transition-transform"></i>
+                        </button>
+                         <div class="accordion-content px-6">
+                           <div class="py-6 border-t border-slate-200 grid lg:grid-cols-2 gap-8">
+                                <!-- DevOps & Programming -->
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fab fa-aws icon text-purple-500"></i>DevOps & Lập trình</h3>
+                                    <ul class="goal-list">
+                                        <li><input type="checkbox" id="g3-dv1"><label for="g3-dv1">Bắt đầu học các domain của DOP-C02.<br><small>Tập trung vào 2 domain đầu tiên: SDLC Automation và Configuration Management & IaC.</small></label></li>
+                                        <li><input type="checkbox" id="g3-dv2"><label for="g3-dv2">Học sâu về AWS CI/CD Services.<br><small>CodeCommit, CodeBuild, CodeDeploy, CodePipeline và các chiến lược deploy.</small></label></li>
+                                        <li><input type="checkbox" id="g3-dv3"><label for="g3-dv3">Học Kubernetes cơ bản.<br><small>Hiểu rõ Pod, Service, Deployment. Triển khai app lên Minikube.</small></label></li>
+                                        <li><input type="checkbox" id="g3-p1"><label for="g3-p1">Học AWS SDK (JS) / Boto3 (Python).<br><small>Viết tool automation nhỏ (ví dụ: backup, dọn dẹp tài nguyên).</small></label></li>
+                                    </ul>
+                                </div>
+                                <!-- English & Dropshipping -->
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fas fa-language icon text-green-500"></i>Tiếng Anh</h3>
+                                    <ul class="goal-list">
+                                        <li><input type="checkbox" id="g3-t1"><label for="g3-t1">Luyện nói và viết chủ động.<br><small>Tham gia thảo luận trên Reddit/Stack Overflow, viết blog ngắn về một chủ đề kỹ thuật.</small></label></li>
+                                    </ul>
+                                    <h3 class="text-xl font-bold mb-4 mt-6 flex items-center"><i class="fas fa-store icon text-orange-500"></i>Dropshipping</h3>
+                                    <ul class="goal-list">
+                                       <li><input type="checkbox" id="g3-d1"><label for="g3-d1">Tối ưu store và quảng cáo.<br><small>Dựa vào data đã có để tối ưu trang sản phẩm và target ads.</small></label></li>
+                                       <div class="outcome"><p><strong><i class="fas fa-bullseye mr-2"></i>Mục tiêu:</strong> Đạt lợi nhuận > 5 triệu/tháng.</p></div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Phase 4 -->
+                    <div class="card">
+                        <button class="accordion-button w-full p-6 text-left flex justify-between items-center">
+                            <h2 class="text-2xl font-bold text-red-700">Giai Đoạn 4: Luyện Thi DOP-C02 (Tháng 10-12)</h2>
+                            <i class="fas fa-chevron-down accordion-arrow transition-transform"></i>
+                        </button>
+                        <div class="accordion-content px-6">
+                           <div class="py-6 border-t border-slate-200 grid lg:grid-cols-2 gap-8">
+                                <!-- DevOps & Programming -->
+                                <div>
+                                    <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fab fa-aws icon text-purple-500"></i>DevOps & Lập trình</h3>
+                                    <ul class="goal-list">
+                                        <li><input type="checkbox" id="g4-dv1"><label for="g4-dv1">Học các domain còn lại của DOP-C02.<br><small>Monitoring & Logging, Policy & Standards, High Availability, Security.</small></label></li>
+                                        <li><input type="checkbox" id="g4-dv2"><label for="g4-dv2">Thực hành các bài lab phức tạp.<br><small>Xây dựng các kịch bản thực tế về Blue/Green deployment, Disaster Recovery.</small></label></li>
+                                        <li><input type="checkbox" id="g4-dv3"><label for="g4-dv3">Luyện đề và tổng ôn tập.<br><small>Cày các bộ đề của Stephane Maarek, Jon Bonso. Phân tích kỹ các câu trả lời sai.</small></label></li>
+                                        <li><input type="checkbox" id="g4-p1"><label for="g4-p1">Hoàn thiện tool/dự án cho portfolio.<br><small>Viết README chi tiết, vẽ sơ đồ kiến trúc.</small></label></li>
+                                         <div class="outcome"><p><strong><i class="fas fa-trophy mr-2 text-yellow-500"></i>Mục tiêu cuối cùng: Thi đỗ AWS DevOps Engineer - Professional (DOP-C02)</strong></p></div>
+                                    </ul>
+                                </div>
+                                <!-- English & Dropshipping -->
+                                <div>
+                                     <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fas fa-language icon text-green-500"></i>Tiếng Anh</h3>
+                                    <ul class="goal-list">
+                                        <li><input type="checkbox" id="g4-t1"><label for="g4-t1">Thực hành phỏng vấn.<br><small>Tìm bạn luyện phỏng vấn các câu hỏi tình huống về DevOps bằng tiếng Anh.</small></label></li>
+                                    </ul>
+                                    <h3 class="text-xl font-bold mb-4 mt-6 flex items-center"><i class="fas fa-store icon text-orange-500"></i>Dropshipping</h3>
+                                    <ul class="goal-list">
+                                       <li><input type="checkbox" id="g4-d1"><label for="g4-d1">Tự động hóa store.<br><small>Sử dụng Shopify Flow/Zapier. Mục tiêu: Chỉ cần 1-2h/tuần để quản lý.</small></label></li>
+                                       <div class="outcome"><p><strong><i class="fas fa-bullseye mr-2"></i>Mục tiêu:</b> Đạt thu nhập thụ động >= 10 triệu/tháng.</p></div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Principles -->
+            <div id="tab-principles" class="tab-panel hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="commitment-card card p-8 rounded-xl shadow-lg">
+                      <h2 class="text-3xl font-bold mb-4 flex items-center"><i class="fas fa-fist-raised icon text-yellow-400"></i>Kỷ Luật & Cam Kết</h2>
+                      <p class="text-gray-300 mb-6">Đây là những quy tắc nền tảng.</p>
+                      <ul class="space-y-4">
+                        <li class="flex items-start"><i class="fas fa-check-double text-yellow-400 mt-1 mr-4"></i><span><strong>Không có ngày nghỉ, chỉ có ngày "nhẹ nhàng":</strong> Kể cả khi mệt mỏi, hãy dành ít nhất 25 phút (1 Pomodoro) để ôn lại kiến thức cũ.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-double text-yellow-400 mt-1 mr-4"></i><span><strong>Lập kế hoạch trước khi ngủ:</strong> Dành 10 phút tối Chủ nhật để vạch ra 3 nhiệm vụ quan trọng nhất cho mỗi lĩnh vực trong tuần tới.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-double text-yellow-400 mt-1 mr-4"></i><span><strong>Theo dõi và check:</strong> Tích vào các ô đã hoàn thành. Cảm giác hoàn thành chính là động lực lớn nhất.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-double text-yellow-400 mt-1 mr-4"></i><span><strong>Ưu tiên hệ thống hơn mục tiêu:</strong> Yêu thích quá trình học mỗi ngày. Hoàn thành lịch trình mỗi ngày mới là chiến thắng thật sự.</span></li>
+                      </ul>
+                    </div>
+                    <div class="target-card card p-8 rounded-xl">
+                         <h2 class="text-3xl font-bold mb-4 flex items-center text-blue-800"><i class="fas fa-flag-checkered icon"></i>Đích Đến Sau 1 Năm</h2>
+                         <p class="text-gray-700 mb-6">Chân dung của bạn sau 365 ngày cam kết.</p>
+                         <ul class="space-y-4">
+                            <li class="bg-white p-4 rounded-lg shadow"><h4 class="font-bold text-blue-700">DevOps</h4><p class="text-sm text-gray-600">Sở hữu chứng chỉ **AWS DevOps Engineer - Professional**, tự tin thiết kế và quản lý hạ tầng tự động, sẵn sàng cho các vị trí DevOps Engineer.</p></li>
+                            <li class="bg-white p-4 rounded-lg shadow"><h4 class="font-bold text-blue-700">Lập Trình</h4><p class="text-sm text-gray-600">Thành thạo Node.js để xây dựng API và viết các tool tự động hóa phức tạp, có một portfolio ấn tượng.</p></li>
+                            <li class="bg-white p-4 rounded-lg shadow"><h4 class="font-bold text-blue-700">Dropshipping</h4><p class="text-sm text-gray-600">Sở hữu một store dropshipping được tự động hóa, tạo ra thu nhập thụ động mà không cần nhiều thời gian vận hành.</p></li>
+                            <li class="bg-white p-4 rounded-lg shadow"><h4 class="font-bold text-blue-700">Tiếng Anh</h4><p class="text-sm text-gray-600">Sử dụng thành thạo tiếng Anh để đọc tài liệu, xem hội thảo và thảo luận các vấn đề kỹ thuật.</p></li>
+                         </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3: Schedule -->
+            <div id="tab-schedule" class="tab-panel hidden">
+                 <div class="card p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-center mb-6">Thời Khóa Biểu Cân Bằng</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full min-w-[900px] text-center border-collapse">
+                            <thead class="bg-slate-800 text-white">
+                                <tr>
+                                    <th class="p-4 rounded-tl-lg">Thời gian</th>
+                                    <th class="p-4 bg-purple-800">Thứ Hai</th>
+                                    <th class="p-4">Thứ Ba</th>
+                                    <th class="p-4">Thứ Tư</th>
+                                    <th class="p-4 bg-purple-800">Thứ Năm</th>
+                                    <th class="p-4">Thứ Sáu</th>
+                                    <th class="p-4 bg-blue-800">Thứ Bảy (Deep Work)</th>
+                                    <th class="p-4 bg-blue-800 rounded-tr-lg">Chủ Nhật</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-4 font-semibold">20:30-22:00</td>
+                                    <td class="p-4 font-semibold text-purple-800">Học DevOps<br><small>(Lý thuyết)</small></td>
+                                    <td class="p-4">Lập trình<br><small>(Node.js)</small></td>
+                                    <td class="p-4">Tiếng Anh<br><small>(Nói, Viết)</small></td>
+                                    <td class="p-4 font-semibold text-purple-800">Học DevOps<br><small>(Lý thuyết)</small></td>
+                                    <td class="p-4">Dropshipping<br><small>(Tối ưu / Tự động hóa)</small></td>
+                                    <td class="p-4 font-bold text-blue-700" rowspan="2">THỰC HÀNH DỰ ÁN DEVOPS<br><small>(Viết IaC, xây dựng pipeline, làm lab, luyện đề)</small></td>
+                                    <td class="p-4 font-bold text-blue-700" rowspan="2">Ôn tập & Lập kế hoạch<br><small>Học bù kiến thức yếu và Lên kế hoạch chi tiết cho tuần tới</small></td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-4 font-semibold">22:00-23:00</td>
+                                    <td class="p-4 font-semibold text-purple-800">Thực hành Lab<br><small>(Theo lý thuyết)</small></td>
+                                    <td class="p-4">Lập trình<br><small>(Thực hành)</small></td>
+                                    <td class="p-4">Tiếng Anh<br><small>(Đọc docs, từ vựng)</small></td>
+                                    <td class="p-4 font-semibold text-purple-800">Thực hành Lab<br><small>(Theo lý thuyết)</small></td>
+                                     <td class="p-4">Ôn tập tổng hợp<br><small>(Xem lại các vấn đề trong tuần)</small></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Tab Logic ---
+        function openTab(event, tabId) {
+            const tabPanels = document.querySelectorAll('.tab-panel');
+            tabPanels.forEach(panel => {
+                panel.classList.add('hidden');
+            });
+
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            document.getElementById(tabId).classList.remove('hidden');
+            event.currentTarget.classList.add('active');
+        }
+
+        // --- Accordion Logic ---
+        const accordionButtons = document.querySelectorAll('.accordion-button');
+        accordionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                button.classList.toggle('open');
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    content.style.paddingTop = null;
+                    content.style.paddingBottom = null;
+                } else {
+                    content.style.paddingTop = '1.5rem';
+                    content.style.paddingBottom = '1.5rem';
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+
+        // --- Checkbox & Progress Bar Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const allCheckboxes = document.querySelectorAll('.goal-list input[type="checkbox"]');
+            const progressBar = document.getElementById('progress-bar');
+            const totalTasks = allCheckboxes.length;
+            
+            function updateProgress() {
+                const checkedTasks = document.querySelectorAll('.goal-list input[type="checkbox"]:checked').length;
+                const percentage = totalTasks > 0 ? Math.round((checkedTasks / totalTasks) * 100) : 0;
+                
+                progressBar.style.width = percentage + '%';
+                progressBar.textContent = percentage + '%';
+            }
+
+            function saveState() {
+                allCheckboxes.forEach(checkbox => {
+                    localStorage.setItem(checkbox.id, checkbox.checked);
+                });
+            }
+
+            function loadState() {
+                allCheckboxes.forEach(checkbox => {
+                    const savedState = localStorage.getItem(checkbox.id);
+                    if (savedState !== null) {
+                        checkbox.checked = (savedState === 'true');
+                    }
+                });
+            }
+
+            allCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    saveState();
+                    updateProgress();
+                });
+            });
+
+            // Initial setup
+            loadState();
+            updateProgress();
+            
+            // Open the first accordion by default
+            if(accordionButtons.length > 0) {
+                 accordionButtons[0].click();
+            }
+        });
+    </script>
+
+</body>
+</html>
